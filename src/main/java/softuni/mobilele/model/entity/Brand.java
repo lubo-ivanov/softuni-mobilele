@@ -15,7 +15,11 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "brands")
-public class Brand extends BaseEntity {
+public class Brand {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -31,41 +35,4 @@ public class Brand extends BaseEntity {
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private List<Model> models;
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Column
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    @Column
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
-
-
-    public List<Model> getModels() {
-        return models;
-    }
-
-    public void setModels(List<Model> models) {
-        this.models = models;
-    }
 }
