@@ -1,7 +1,7 @@
 package softuni.mobilele.model.entity;
 
 
-import softuni.mobilele.model.entity.enums.Category;
+import softuni.mobilele.model.enums.Category;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
