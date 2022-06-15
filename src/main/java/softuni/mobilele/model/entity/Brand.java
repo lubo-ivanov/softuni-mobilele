@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 @Entity
 @Table(name = "brands")
 public class Brand extends BaseEntity {
@@ -13,8 +14,6 @@ public class Brand extends BaseEntity {
 
     private List<Model> models;
 
-    public Brand() {
-    }
 
     @Column(unique = true, nullable = false)
     public String getName() {

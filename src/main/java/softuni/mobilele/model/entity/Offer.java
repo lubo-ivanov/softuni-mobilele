@@ -56,6 +56,4 @@ public class Offer{
     @ManyToOne
     private User seller;
 
-    //TODO fields...
-
 }
