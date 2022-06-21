@@ -32,9 +32,12 @@
                         type="text"
                         class="form-control"
                         placeholder="First name"/>
-                <p class="invalid-feedback errors alert alert-danger">
+                <div class="invalid-feedback errors alert alert-danger">
                     First name is required.
-                </p>
+                    <div th:each="error : ${#fields.errors('firstName')}"
+                         th:text="${error}">
+                    </div>
+                </div>
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="lastName" class="text-white font-weight-bold">Last Name</label>
@@ -45,7 +48,7 @@
                        class="form-control"
                        placeholder="Last name"/>
                 <p class="invalid-feedback errors alert alert-danger">
-                    Last name is required.
+                    Last name is required and should be between 2 and 20 characters.
                 </p>
             </div>
         </div>
@@ -60,7 +63,7 @@
                         class="form-control"
                         placeholder="Username"/>
                 <p class="invalid-feedback errors alert alert-danger">
-                    Username is required.
+                    Username is required and should be between 2 and 20 characters.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
@@ -73,21 +76,22 @@
                         class="form-control"
                         placeholder="Password"/>
                 <p class="invalid-feedback errors alert alert-danger">
-                    Password is required.
+                    Password is required and should be at least 5 symbols.
                 </p>
             </div>
         </div>
         <div class="form-group">
-            <label class="text-center text-white font-weight-bold" for="roles">Roles</label>
-            <select
-                    id="roles"
+            <label for="confirmPassword" class="text-white font-weight-bold">Repeat Password</label>
+            <input
+                    id="confirmPassword"
+                    th:field="*{confirmPassword}"
+                    th:errorclass="is-invalid"
+                    type="password"
                     class="form-control"
-                    multiple>
-                <option>
-                </option>
-            </select>
-            <p class="errors alert alert-danger">
-                Selecting a role is required.
+                    placeholder="Repeat password"
+            />
+            <p class="invalid-feedback errors alert alert-danger">
+                Passwords should match.
             </p>
         </div>
 
