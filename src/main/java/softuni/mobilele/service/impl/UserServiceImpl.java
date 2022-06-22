@@ -4,11 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import softuni.mobilele.model.dto.UserLoginDTO;
 import softuni.mobilele.model.dto.UserRegistrationDto;
 import softuni.mobilele.model.entity.User;
 import softuni.mobilele.repository.UserRepository;
 import softuni.mobilele.service.UserService;
 import softuni.mobilele.user.CurrentUser;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -39,4 +42,33 @@ public class UserServiceImpl implements UserService {
         currentUser.setName(user.getFirstName() + " " + user.getLastName());
         currentUser.setUsername(user.getUsername());
     }
+
+    public void logout() {
+        currentUser.clear();
+    }
+
+    @Override
+    public boolean login(UserLoginDTO userLoginDTO) {
+        Optional<User> userOpt = userRepository.
+                findByEmail(userLoginDTO.getUsername());
+
+        if (userOpt.isEmpty()) {
+            return false;
+        }
+
+        String rawPassword = userLoginDTO.getPassword();
+        String encodedPassword = userOpt.get().getPassword();
+
+        boolean success = passwordEncoder.
+                matches(rawPassword, encodedPassword);
+
+        if (success) {
+            login(userOpt.get());
+        } else {
+            logout();
+        }
+
+        return success;
+    }
+
 }
