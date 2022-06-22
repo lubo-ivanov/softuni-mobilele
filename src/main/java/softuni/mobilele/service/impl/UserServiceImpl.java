@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean login(UserLoginDTO userLoginDTO) {
         Optional<User> userOpt = userRepository.
-                findByEmail(userLoginDTO.getUsername());
+                findByUsername(userLoginDTO.getUsername());
 
         if (userOpt.isEmpty()) {
             return false;

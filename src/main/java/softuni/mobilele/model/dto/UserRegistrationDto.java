@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import softuni.mobilele.model.entity.UserRole;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -34,6 +31,6 @@ public class UserRegistrationDto {
     @Size(min = 5)
     private String password;
 
-    private String repeatPassword;
+    private String confirmPassword;
 
 }

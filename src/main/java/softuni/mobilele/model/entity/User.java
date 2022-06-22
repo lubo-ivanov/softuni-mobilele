@@ -39,7 +39,7 @@ public class User {
     @ManyToOne
     private UserRole role;
 
-    @Column(name = "imahe_url")
+    @Column(name = "image_url")
     private String imageUrl;
 
     @Column
