@@ -8,6 +8,7 @@ import softuni.mobilele.model.dto.UserRegistrationDto;
 import softuni.mobilele.model.entity.User;
 import softuni.mobilele.repository.UserRepository;
 import softuni.mobilele.service.UserService;
+import softuni.mobilele.user.CurrentUser;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,10 +33,10 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
         login(user);
     }
+
     private void login(User user) {
-        currentUser.
-                setLoggedIn(true).
-                setName(user.getFirstName() + " " + user.getLastName()).
-                setEmail(user.getUsername());
+        currentUser.setLoggedIn(true);
+        currentUser.setName(user.getFirstName() + " " + user.getLastName());
+        currentUser.setUsername(user.getUsername());
     }
 }
